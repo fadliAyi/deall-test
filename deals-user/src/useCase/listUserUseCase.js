@@ -5,8 +5,6 @@ module.exports = async (params) => {
   const filter = {};
   if (params.q) {
     filter.name = { $regex: params.q, $options: 'i' };
-    filter.email = { $regex: params.q, $options: 'i' };
-    filter.username = { $regex: params.q, $options: 'i' };
   }
   const options = {
     page: params.page || 1,
