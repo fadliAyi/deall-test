@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deals-user
+spec:
+  selector:
+    app: deals-user
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deals-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deals-user
+  template:
+    metadata:
+      labels:
+        app: deals-user
+    spec:
+      containers:
+        - name: app
+          image: muhammadfadliku/deals-user
+          ports:
+            - containerPort: 3000
+          env:
+            - name: port
+              value: "3000"
+            - name: MONGO_DSN
+              value: mongodb://mongo:27017/?directConnection=true&authMechanism=DEFAULT&authSource=deals_user
+            - name: AUTH_BASE_URL
+              value: http://auth-user:8080/api/user
+          imagePullPolicy: Always

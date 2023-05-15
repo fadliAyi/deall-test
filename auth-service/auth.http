@@ -1,0 +1,14 @@
+### generate jwt
+
+POST localhost:8080/api/user/generate-token HTTP/1.1
+content-type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### get info claim
+GET localhost:8080/api/user/me HTTP/1.1
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwidGltZXN0YW1wIjoiMjAyMy0wNS0xNFQwMzoyMDo1NC4yMzQrMDg6MDAiLCJleHAiOjE2ODQwMDk1OTV9.YcTPdNvW1BbusaXqI7SA93GWW2KRX37Ucot5f2oWZLE
